@@ -39,7 +39,7 @@ div#menu {
     padding: 5vh;
     background-color: lightcyan; 
 }
-button#newGameButton {
+button {
     padding: 10px;
     border-radius: 5px;
     border: 0;

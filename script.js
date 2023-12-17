@@ -105,13 +105,16 @@ function drawKeyboard() {
     charsArray.forEach((c) => {
         let newButton = document.createElement("button");
         newButton.innerHTML = c;
-        newButton.addEventListener("click", test);
+        newButton.addEventListener("click", ButtonPressed);
         keyboardDiv.appendChild(newButton);
     });
 }
-function test(event) {
+function ButtonPressed(event) {
     //console.log(event);
-    let char = event.srcElement.innerHTML;
+    let button = event.srcElement;
+    let char = button.innerHTML;
+    button.disabled = true;
+    button.style.backgroundColor = "gray";
     console.log("Wciśnięto guzik:"+char);
     guess(char);
 }
