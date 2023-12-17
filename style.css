@@ -31,11 +31,21 @@ div#imageDiv {
 img#image {
     max-width: 100%;
     max-height: 100%;
-    margin: 0 auto;
+    
 }
 div#menu {
     height: 20vh;
     text-align: center;
     padding: 5vh;
     background-color: lightcyan; 
+}
+button#newGameButton {
+    padding: 10px;
+    border-radius: 5px;
+    border: 0;
+    text-transform: uppercase;
+    background-color: teal;
+    color:#eee;
+    font-weight: 700;
+    font-size: 1.5rem;
 }
