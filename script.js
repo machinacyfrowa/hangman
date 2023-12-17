@@ -51,6 +51,19 @@ function guess(guessedChar) {
             //wyświetl kompletnego wisielca
             let imageUrl = "img/8.png";
             document.getElementById("image").src = imageUrl;
+            //zablokuj klawiaturę - usuń przypięte zdarzenia z guzików
+            //stworz tablicę złozoną z guzików pobranych z DOM
+            //potrzebujemy array.from ponieważ foreach nie umie pracować z HTMLCollection
+            let buttons = Array.from(document.getElementById("keyboard").children);
+            //używamy pętli foreach żeby wykonac to samo działanie dla każdego guzika
+            buttons.forEach((button) => {
+                //wyłączamy guzik
+                button.disabled = true;
+                //odpinamy zdarzenie
+                button.removeEventListener("click", ButtonPressed);
+                //zmieniamy kolor tła na szare
+                button.style.backgroundColor = "gray";
+            })
             //wyświetl komunika o końcu gry
             setTimeout(gameOver, 1000);
         } else {
@@ -61,6 +74,12 @@ function guess(guessedChar) {
         }
 
 
+    } else {
+        //sprawdz czy zgadliśmy ostatnią literę
+        if(maskedPassword.indexOf("_") == -1) {
+            document.getElementById("victorySound").play();
+            window.alert("Gratulacje!");
+        }
     }
 
     //wyświetl zamaskowane hasło
