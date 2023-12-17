@@ -66,14 +66,15 @@ window.addEventListener("load", () => { //funkcja anonimowa
     //document.getElementById("guessedChar")
     //    .addEventListener("input", guess);
 
-    //wyświetl zamaskowane hasło
-    document.getElementById("maskedPassword").innerHTML = maskedPassword.join("");
+    
 
 
 
     //przypnij funkcję newGame do guzika
     document.getElementById("newGameButton")
         .addEventListener("click", newGame);
+
+    //uruchom new game po załadowaniu okna
     newGame();
 })
 function gameOver() {
@@ -81,6 +82,9 @@ function gameOver() {
     alert("Koniec gry :(");
 }
 function newGame() {
+    //zapisz do hasła ciąg tekstowy otrzymany z okna dialogowego
+    //podzielony metodą split na tablicę po jednym znaku w komórce
+    password = prompt("Podaj hasło do odgadnięcia: ").split("");
     errorCounter = 0;
     document.getElementById("image").src = "img/0.png";
     let passwordLength = password.length;
@@ -121,6 +125,5 @@ function ButtonPressed(event) {
     guess(char);
 }
 
-const password = "choinka".split("");
+var password = "choinka".split("");
 var maskedPassword;
-newGame();
