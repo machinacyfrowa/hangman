@@ -69,8 +69,7 @@ window.addEventListener("load", () => { //funkcja anonimowa
     //wyświetl zamaskowane hasło
     document.getElementById("maskedPassword").innerHTML = maskedPassword.join("");
 
-    //wyświetl klawiaturę
-    drawKeyboard();
+
 
     //przypnij funkcję newGame do guzika
     document.getElementById("newGameButton")
@@ -91,6 +90,7 @@ function newGame() {
     //zresetuj eventListener dla pola tekstowego
     //document.getElementById("guessedChar").removeEventListener("input", gameOver);
     //document.getElementById("guessedChar").addEventListener("input", guess);
+    drawKeyboard();
 }
 function drawKeyboard() {
     //tworzymy string zawierający wszystkie możliwe do użycia litery
@@ -99,6 +99,8 @@ function drawKeyboard() {
     let charsArray  = chars.split("");
     //znajdz i przygotuj odnośnik do lewej części strony
     let keyboardDiv = document.getElementById("keyboard");
+    //czyścimy diva przed rozpoczęciem rysowania
+    keyboardDiv.innerHTML = "";
     //lecimy pętlą foreach przez tablicę
     //dla każdego elementu tablicy wywołaj funkcję anonimową
     //dla każdego wywołana aktualny element jest dostępny pod nazwą zmiennej "c"
