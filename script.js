@@ -55,7 +55,7 @@ function guess() {
             document.getElementById("guessedChar")
                         .addEventListener("input", gameOver);
             //wyświetl komunika o końcu gry
-            gameOver();
+            setTimeout(gameOver, 1000);
         }
     }
 
