@@ -106,10 +106,18 @@ function drawKeyboard() {
     //dla każdego elementu tablicy wywołaj funkcję anonimową
     //dla każdego wywołana aktualny element jest dostępny pod nazwą zmiennej "c"
     charsArray.forEach((c) => {
-        keyboardDiv.innerHTML += c + " ";
+        let newButton = document.createElement("button");
+        newButton.innerHTML = c;
+        newButton.addEventListener("click", test);
+        keyboardDiv.appendChild(newButton);
     });
+}
+function test(event) {
+    //console.log(event);
+    let char = event.srcElement.innerHTML;
+    console.log("Wciśnięto guzik:"+char);
 }
 
 const password = "choinka".split("");
-
+var maskedPassword;
 newGame();
