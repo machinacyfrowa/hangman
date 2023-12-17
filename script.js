@@ -1,18 +1,15 @@
-function guess() {
-    //funkcja pobiera pojedynczy znak z pola tekstowego
-    //na stronie i wyszukuje oraz ujawnia pasujące znaki w haśle
-
+function guess(guessedChar) {
 
 
     //zgadywany znak
-    let guessedChar = document.getElementById("guessedChar").value;
+    //let guessedChar = document.getElementById("guessedChar").value;
     //odczekaj "chwilkę" i wyczyść pole tekstowe
     //setTimeout to funkcja która ma dwa argumenty w nawiasie
     //pierwszy argument to "co" ma zrobić i musi to być funkcja
     //drugi argument to opóźnienie w milisekundach "kiedy" ma to zrobić
-    setTimeout(() => {
-        document.getElementById("guessedChar").value = ""
-    }, 1000);
+    //setTimeout(() => {
+    //   document.getElementById("guessedChar").value = ""
+    //}, 1000);
 
     //wypisz do konsoli jaki znak próbowaliśmy odgadnąć
     console.log("Próba odgadnięcia znaku: " + guessedChar);
@@ -51,9 +48,9 @@ function guess() {
         document.getElementById("image").src = imageUrl;
         if(errorCounter >= 8) {
             //zmień funkcje wywoływaną po próbie odgadnięcia znaku
-            document.getElementById("guessedChar").removeEventListener("input", guess);
-            document.getElementById("guessedChar")
-                        .addEventListener("input", gameOver);
+            //document.getElementById("guessedChar").removeEventListener("input", guess);
+            //document.getElementById("guessedChar")
+            //            .addEventListener("input", gameOver);
             //wyświetl komunika o końcu gry
             setTimeout(gameOver, 1000);
         }
@@ -66,8 +63,8 @@ function guess() {
 window.addEventListener("load", () => { //funkcja anonimowa
     //dodaj do pola edycyjnego funkcję guess(), która uruchomi sie
     //przy każdej zmianie zawartości (wpisaniu znaku)
-    document.getElementById("guessedChar")
-        .addEventListener("input", guess);
+    //document.getElementById("guessedChar")
+    //    .addEventListener("input", guess);
 
     //wyświetl zamaskowane hasło
     document.getElementById("maskedPassword").innerHTML = maskedPassword.join("");
@@ -92,8 +89,8 @@ function newGame() {
     //wyświetl zamaskowane hasło
     document.getElementById("maskedPassword").innerHTML = maskedPassword.join("");
     //zresetuj eventListener dla pola tekstowego
-    document.getElementById("guessedChar").removeEventListener("input", gameOver);
-    document.getElementById("guessedChar").addEventListener("input", guess);
+    //document.getElementById("guessedChar").removeEventListener("input", gameOver);
+    //document.getElementById("guessedChar").addEventListener("input", guess);
 }
 function drawKeyboard() {
     //tworzymy string zawierający wszystkie możliwe do użycia litery
@@ -116,6 +113,7 @@ function test(event) {
     //console.log(event);
     let char = event.srcElement.innerHTML;
     console.log("Wciśnięto guzik:"+char);
+    guess(char);
 }
 
 const password = "choinka".split("");
