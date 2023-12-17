@@ -71,12 +71,26 @@ window.addEventListener("load", () => { //funkcja anonimowa
 
     //wyświetl zamaskowane hasło
     document.getElementById("maskedPassword").innerHTML = maskedPassword.join("");
+
+    //przypnij funkcję newGame do guzika
+    document.getElementById("newGameButton")
+        .addEventListener("click", newGame);
 })
 function gameOver() {
     //funkcja uruchamia się po osiągnięciu maksymalnej liczby błędnych odpowiedzi
     alert("Koniec gry :(");
 }
+function newGame() {
+    errorCounter = 0;
+    document.getElementById("image").src = "img/0.png";
+    let passwordLength = password.length;
+    maskedPassword = Array(passwordLength).fill("_");
+    //wyświetl zamaskowane hasło
+    document.getElementById("maskedPassword").innerHTML = maskedPassword.join("");
+    //zresetuj eventListener dla pola tekstowego
+    document.getElementById("guessedChar").removeEventListener("input", gameOver);
+    document.getElementById("guessedChar").addEventListener("input", guess);
+}
 
 const password = "choinka".split("");
-var maskedPassword = "_______".split("");
-var errorCounter = 0;
+newGame();
