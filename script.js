@@ -72,9 +72,13 @@ window.addEventListener("load", () => { //funkcja anonimowa
     //wyświetl zamaskowane hasło
     document.getElementById("maskedPassword").innerHTML = maskedPassword.join("");
 
+    //wyświetl klawiaturę
+    drawKeyboard();
+
     //przypnij funkcję newGame do guzika
     document.getElementById("newGameButton")
         .addEventListener("click", newGame);
+    newGame();
 })
 function gameOver() {
     //funkcja uruchamia się po osiągnięciu maksymalnej liczby błędnych odpowiedzi
@@ -91,6 +95,21 @@ function newGame() {
     document.getElementById("guessedChar").removeEventListener("input", gameOver);
     document.getElementById("guessedChar").addEventListener("input", guess);
 }
+function drawKeyboard() {
+    //tworzymy string zawierający wszystkie możliwe do użycia litery
+    const chars = "abcdefghijklmnopqrstuwxyz";
+    //zamieniamy je na tablicę - po jednym znaku w każdej komórce
+    let charsArray  = chars.split("");
+    //znajdz i przygotuj odnośnik do lewej części strony
+    let keyboardDiv = document.getElementById("keyboard");
+    //lecimy pętlą foreach przez tablicę
+    //dla każdego elementu tablicy wywołaj funkcję anonimową
+    //dla każdego wywołana aktualny element jest dostępny pod nazwą zmiennej "c"
+    charsArray.forEach((c) => {
+        keyboardDiv.innerHTML += c + " ";
+    });
+}
 
 const password = "choinka".split("");
+
 newGame();
