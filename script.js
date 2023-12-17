@@ -2,6 +2,8 @@ function guess() {
     //funkcja pobiera pojedynczy znak z pola tekstowego
     //na stronie i wyszukuje oraz ujawnia pasujące znaki w haśle
 
+
+
     //zgadywany znak
     let guessedChar = document.getElementById("guessedChar").value;
     //odczekaj "chwilkę" i wyczyść pole tekstowe
@@ -14,6 +16,10 @@ function guess() {
 
     //wypisz do konsoli jaki znak próbowaliśmy odgadnąć
     console.log("Próba odgadnięcia znaku: " + guessedChar);
+
+    //dodaj flagę określającą czy w tej próbie trafiliśmy jakąś literę,
+    //domyślnie flaga ma wartość false czyli nie trafiony
+    let correct = false;
 
     //odkryj literki jeśli trafiłem
 
@@ -29,9 +35,15 @@ function guess() {
             if (guessedChar == password[i]) {
                 //odkryj w zamaskowanym haśle tą literę
                 maskedPassword[i] = password[i];
+                //zgadliśmy literę - postaw flagę
+                correct = true;
             }
         }
 
+    }
+    //sprawdz czy trafiliśmy i w razie potrzeby zwiększ licznik nieudanych prób
+    if(!correct) {
+        errorCounter++;
     }
 
     //wyświetl zamaskowane hasło
@@ -50,3 +62,4 @@ window.addEventListener("load", () => { //funkcja anonimowa
 
 const password = "choinka".split("");
 var maskedPassword = "_______".split("");
+var errorCounter = 0;
