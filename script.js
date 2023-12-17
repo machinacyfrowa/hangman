@@ -39,21 +39,28 @@ function guess(guessedChar) {
 
     }
     //sprawdz czy trafiliśmy i w razie potrzeby zwiększ licznik nieudanych prób
-    if(!correct) {
+    if (!correct) {
         //inkrementuj licznik
         errorCounter++;
-        //wygeneruj nowy url obrazka
-        let imageUrl = "img/" + errorCounter + ".png";
-        //podmień obrazek na stronie (zmień jego src)
-        document.getElementById("image").src = imageUrl;
-        if(errorCounter >= 8) {
+        if (errorCounter >= 8) {
             //zmień funkcje wywoływaną po próbie odgadnięcia znaku
             //document.getElementById("guessedChar").removeEventListener("input", guess);
             //document.getElementById("guessedChar")
             //            .addEventListener("input", gameOver);
+
+            //wyświetl kompletnego wisielca
+            let imageUrl = "img/8.png";
+            document.getElementById("image").src = imageUrl;
             //wyświetl komunika o końcu gry
             setTimeout(gameOver, 1000);
+        } else {
+            //wygeneruj nowy url obrazka
+            let imageUrl = "img/" + errorCounter + ".png";
+            //podmień obrazek na stronie (zmień jego src)
+            document.getElementById("image").src = imageUrl;
         }
+
+
     }
 
     //wyświetl zamaskowane hasło
@@ -66,7 +73,7 @@ window.addEventListener("load", () => { //funkcja anonimowa
     //document.getElementById("guessedChar")
     //    .addEventListener("input", guess);
 
-    
+
 
 
 
@@ -100,7 +107,7 @@ function drawKeyboard() {
     //tworzymy string zawierający wszystkie możliwe do użycia litery
     const chars = "abcdefghijklmnopqrstuwxyz";
     //zamieniamy je na tablicę - po jednym znaku w każdej komórce
-    let charsArray  = chars.split("");
+    let charsArray = chars.split("");
     //znajdz i przygotuj odnośnik do lewej części strony
     let keyboardDiv = document.getElementById("keyboard");
     //czyścimy diva przed rozpoczęciem rysowania
@@ -121,7 +128,7 @@ function ButtonPressed(event) {
     let char = button.innerHTML;
     button.disabled = true;
     button.style.backgroundColor = "gray";
-    console.log("Wciśnięto guzik:"+char);
+    console.log("Wciśnięto guzik:" + char);
     guess(char);
 }
 
