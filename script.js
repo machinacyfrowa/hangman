@@ -49,6 +49,14 @@ function guess() {
         let imageUrl = "img/" + errorCounter + ".png";
         //podmień obrazek na stronie (zmień jego src)
         document.getElementById("image").src = imageUrl;
+        if(errorCounter >= 8) {
+            //zmień funkcje wywoływaną po próbie odgadnięcia znaku
+            document.getElementById("guessedChar").removeEventListener("input", guess);
+            document.getElementById("guessedChar")
+                        .addEventListener("input", gameOver);
+            //wyświetl komunika o końcu gry
+            gameOver();
+        }
     }
 
     //wyświetl zamaskowane hasło
@@ -64,6 +72,10 @@ window.addEventListener("load", () => { //funkcja anonimowa
     //wyświetl zamaskowane hasło
     document.getElementById("maskedPassword").innerHTML = maskedPassword.join("");
 })
+function gameOver() {
+    //funkcja uruchamia się po osiągnięciu maksymalnej liczby błędnych odpowiedzi
+    alert("Koniec gry :(");
+}
 
 const password = "choinka".split("");
 var maskedPassword = "_______".split("");
