@@ -43,7 +43,12 @@ function guess() {
     }
     //sprawdz czy trafiliśmy i w razie potrzeby zwiększ licznik nieudanych prób
     if(!correct) {
+        //inkrementuj licznik
         errorCounter++;
+        //wygeneruj nowy url obrazka
+        let imageUrl = "img/" + errorCounter + ".png";
+        //podmień obrazek na stronie (zmień jego src)
+        document.getElementById("image").src = imageUrl;
     }
 
     //wyświetl zamaskowane hasło
